@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 public class MyFrame extends JFrame implements ActionListener{
    //필드
 	//필드를 선언해두면 어디서든 사용할수있어서 선언한다 특히 메소드에서 필요한 값을 담아둔다
-	JButton sendBtn, deleteBtn, updateBtn;
+	JButton sendBtn, deleteBtn, updateBtn; //동일한 type 인 경우 1줄에 선언할수있다.
    //생성자
    public MyFrame(String title) {
       super(title);
