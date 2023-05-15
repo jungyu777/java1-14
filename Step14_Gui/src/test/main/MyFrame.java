@@ -21,8 +21,8 @@ public class MyFrame extends JFrame implements ActionListener{
 		setLayout(new FlowLayout());
 		
 		//JTextField 2ro
-		tf_num1=new JTextField(10);
-		tf_num2=new JTextField(10);
+		tf_num1=new JTextField(20);
+		tf_num2=new JTextField(20);
 		//JButton 4개
 		//기능버튼 객체를 만들어서 
 		JButton plusBtn =new JButton("+");

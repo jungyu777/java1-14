@@ -5,19 +5,21 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+public class MainClass02 {
 /*
- * JDBC( java DataBase Connectivity )
- * 
- * DataBase 에 연결해서 SELECT , INSERTM UPDATE, DELETE 작업하기
- * 
- * Oracle 에 연결하기 위해서는 드라이버 클래스가 들어있는 ojdbc6.jar 파일을
- * 사용할수 있도록 설정해야한다.
- * module info java 삭제
- * 프로젝트에 마우스 우클릭=> Build Path = > Configure Build path=> Librarys 탭선택
- * => classpath 선택 => 우측 Add External jar 버튼을 누른후 =>  ojdbc6.jar 팡ㄹ을 찾은 다음 =>Apply
- * 
- * 
- * Execute
+ * Statement 클래스
+- SQL 구문을 실행하는 역할
+- 스스로는 SQL 구문 이해 못함(구문해석 X) -> 전달역할
+- SQL 관리 O + 연결 정보 X
+
+PreparedStatement 클래스
+- Statement 클래스의 기능 향상
+- 인자와 관련된 작업이 특화(매개변수)
+- 코드 안정성 높음. 가독성 높음.
+- 코드량이 증가 -> 매개변수를 set해줘야하기 때문에..
+- 텍스트 SQL 호출
+
+Execute
 1. 수행결과로 Boolean 타입의 값을 반환합니다.
 2. 모든 구문을 수행할 수 있습니다.
 execute 함수를 사용하는 방법입니다.
@@ -37,11 +39,14 @@ executeUpdate 함수를 사용하는 방법입니다.
  -> INSERT / DELETE / UPDATE 관련 구문에서는 반영된 레코드의 건수를 반환합니다.
  -> CREATE / DROP 관련 구문에서는 -1 을 반환합니다.
   
- * 
  */
-public class MainClass01 {
 	public static void main(String[] args) {
-		//seleCT 문
+		//member 테이블에 추가할 회원의 정보라고 가정
+		int num = 4;
+		String name="주뎅이";
+		String addr="봉천동";
+		
+			//seleCT 문
 		   //DB 연결객체를 담을 지역 변수 만들기
 	      Connection conn=null;
 	      
@@ -57,30 +62,25 @@ public class MainClass01 {
 	      } catch (Exception e) {
 	         e.printStackTrace();
 	      }
-	      //SeLECT 작업을 위해서 필요한 객체의 참조값을 담을 지역 변수 미리 만들기
-	      PreparedStatement pstmt = null;
-	      ResultSet rs=null;
+	      //sql문을 대신 실행해줄 객체의 참조값을 담을 지역변수 미리 만들기
+	      PreparedStatement pstmt =null;
 	      try {
-	    	  //실행할 sql 문
-	    	  String sql = "SELECT num,name,addr"
-	    			     +" FROM member"
-	    			     +" ORDER BY num DESC";
-	    	  //prepareStatement 객체의 참조값 얻어오기
-	    	  pstmt=conn.prepareStatement(sql);
-	    	  //SELECT 문 실행하고 결과 값을 ResultSet 으로 얻어내기
-	    	  rs=pstmt.executeQuery();
-	    	  while(rs.next()) {//rs.next()커서이동
-	    		  int num=rs.getInt("num");
-	    		  String name = rs.getString("name");
-	    		  String addr = rs.getString("addr");
-	    		  //콘솔창에 출력해보기
-	    		  System.out.println(num + "|" +name +"|" + addr);
-	    	  }
+	    	  //실행할 미완성의 sql문
+	    	  String sql="INSERT INTO member"
+	    			  	+" (num , name ,addr)"
+	    			  	+" VALUES(? ,? ,?)";
+	    	  //미완성의 sql 문을 전달하면서 preparedStatement 객체의 참조값 얻어내기
+	    	  pstmt = conn.prepareStatement(sql);
+	    	  //preparedStatement 객체의 메소드를 이용해서 미완성인 sql 문을 완성시키기(? 에 값 바인딩하기)
+	    	  pstmt.setInt(1, num); //1번쨰 ? 에 숫자 바인딩
+	    	  pstmt.setString(2,name);//2번쨰 ? 에 문자열 바인딩
+	    	  pstmt.setString(3, addr);//3번쨰 ? 에 문자열 바인딩
+	    	  pstmt.executeUpdate();
+	    	  System.out.println("회원 정보를 저장했습니다");
 	      }catch(Exception e) {
 	    	  e.printStackTrace();
 	      }
-		
+
 	}
-	
-	
+
 }
