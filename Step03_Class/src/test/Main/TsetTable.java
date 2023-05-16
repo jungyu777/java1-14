@@ -17,6 +17,7 @@ public class TsetTable {
 		tab1.getTable();
 		System.out.println(tab1.year);
 		Table tab2 = new Table();//tab2객체만 만들고 아무런값도 주지 않은상태
+		tab2.name="김구라";
 		System.out.println(tab2.name);
 		//위에서 처럼 import test.Mypac.table;에서 기본값만 들어있는 메소드를 복제해서
 		// 호출하면 기본값만 들어있음 여기서 tab2 에 값을 넣는건 tab2에만 적용됨	

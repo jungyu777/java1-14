@@ -3,7 +3,9 @@ package test.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import test.dao.DeptDao;
 import test.dao.MemberDao;
+import test.dto.DeptDto;
 import test.dto.MemberDto;
 
 public class MainClass16 {
@@ -14,6 +16,7 @@ public class MainClass16 {
 		for(MemberDto tmp:list) {
 			System.out.println(tmp.getNum() + " | " + tmp.getName() + " | " + tmp.getAddr());
 		}
+	
 
 	}
 
