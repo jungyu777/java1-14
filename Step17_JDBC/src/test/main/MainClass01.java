@@ -41,7 +41,7 @@ executeUpdate 함수를 사용하는 방법입니다.
  */
 public class MainClass01 {
 	public static void main(String[] args) {
-		//seleCT 문
+		//seleCT 문 table 조회
 		   //DB 연결객체를 담을 지역 변수 만들기
 	      Connection conn=null;
 	      

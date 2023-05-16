@@ -75,6 +75,7 @@ executeUpdate 함수를 사용하는 방법입니다.
 	    	  pstmt.setInt(1, num); //1번쨰 ? 에 숫자 바인딩
 	    	  pstmt.setString(2,name);//2번쨰 ? 에 문자열 바인딩
 	    	  pstmt.setString(3, addr);//3번쨰 ? 에 문자열 바인딩
+	    	  //sql문 실행학기
 	    	  pstmt.executeUpdate();
 	    	  System.out.println("회원 정보를 저장했습니다");
 	      }catch(Exception e) {
