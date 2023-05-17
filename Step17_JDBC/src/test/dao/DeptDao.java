@@ -11,10 +11,16 @@ import test.dto.MemberDto;
 import test.util.DBConnect;
 
 public class DeptDao {
-	
+	/*
+	 * - 결과값을 저장할 수 있다.
+- 저장된 값을 한 행 단위로 불러올 수 있다.
+- 한 행에서 값을 가져올 때는 타입을 지정해 불러올 수 있다.
+(이때, sql은 select, show 등을 실행할 목적으로 사용한다.
+	 */
+		
 	   //인자로 전달되는 번호에 해당하는 회원 한명의 정보를 리턴하는 메소드
 	   public DeptDto getData(int deptno) {
-	      //MemberDto 객체의 참조값을 담을 지역변수 미리 만들기
+	      //DeptDto 객체의 참조값을 담을 지역변수 미리 만들기
 		   DeptDto dto=null;
 	      
 	      //필요한 객체를 담을 지역 변수를 미리 만들기
